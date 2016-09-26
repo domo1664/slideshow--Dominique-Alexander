@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Guy</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			text-transform: uppercase;
+			font-family: 'Roboto Slab', sans-serif;
+			color:#F4E285;
+			text-shadow: 0 4px 2px #000;
+			background-color: #000;
+			position:relative;
+		}
+
+		img{
+			height: 20%;
+			width:20%;
+			border-radius: 5%;
+			opacity:0.5;
+			z-index:1;
+		}
+
+		h1{
+			animation: fade 2s infinite ease-in-out;
+			font-size:6vw;
+			margin:0;
+		}
+
+		@keyframes fade{
+			0%{
+				opacity:0;
+			}
+			50%{
+				opacity:1;
+			}
+			100%{
+				opacity:0;
+			}
+		}
+
+		.slide{
+			animation: slide 3s;
+		}
+
+		@keyframes slide{
+			from{
+				opacity: 0;
+			}
+			to{
+				opacity:0.5;
+			}
+		}
+
+		
+		button{	
+			position:absolute;
+			margin-top:11.5%;
+			margin-left: -3%;
+			border-radius:5%;
+			border:none;
+			outline:none;
+			background-color: transparent;
+			color:#F4E285;
+			width:4vw;
+			height:4vw;
+			font-size: 2vw;
+			z-index: 1;
+		}
+
+		button:nth-child(2){
+			margin-left: 19%;
+		}
+		
+		video{
+			background-size:cover;
+			position:fixed;
+			top: 6%;
+			z-index: 0;
+			-webkit-filter:blur(10px);
+		}
+	</style>
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+</head>
+
+<body>
+
+	<video id="vid" playsinline autoplay muted loop onclick="toggleMute()">
+		<source src="revolver.mp4" type="video/mp4">
+	</video>
+
+	<center>
+		
+		<h1>Guy Ritchie</h1>
+		<div>
+			<button id="button" type="button" onclick="plusDivs(-1)">&#10094;</button>
+			<button id="button" type="button" onclick="plusDivs(+1)">&#10095;</button>
+			<img src="lock_stock.jpg" class="mySlides slide">
+			<img src="snatch.jpg" class="mySlides slide">
+			<img src="revolver.jpg" class="mySlides slide">
+			<img src="rock_n_rolla.jpg" class="mySlides slide">
+			<img src="sherlock_1.jpg" class="mySlides slide">
+			<img src="sherlock_2.jpg" class="mySlides slide">
+			<img src="uncle.jpg" class="mySlides slide">
+		</div>
+	</center>
+	<script type="text/javascript">
+		var vid = document.getElementById("vid");
+		var x = document.getElementsByClassName("mySlides");
+		var slideIndex = 1;
+		showDivs(slideIndex);
+		function plusDivs(n){
+			showDivs(slideIndex += n);
+		}
+		function showDivs(n){
+			var i;
+			
+			if(n>x.length){slideIndex=1;}
+			if(n<1){slideIndex=x.length;}
+			for(i=0; i<x.length; i++){
+				x[i].style.display="none";
+			}
+			x[slideIndex-1].style.display='inline-block';
+		}
+		function toggleMute(){
+			if (vid.muted == true){
+				vid.muted = false;
+				vid.style.webkitFilter = "blur(0px)";
+			}
+			else{
+				vid.muted = true;
+				vid.style.webkitFilter = "blur(10px)";
+			}
+		}
+	</script>
+
+</body>
+</html>
